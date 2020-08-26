@@ -18,11 +18,11 @@ export default {
     ...mapGetters(['getColDataType','getNumberOfCols','getColumns','getColumns2']),
   },
   methods:{
-    removeCols: function(){
+    /*removeCols: function(){
       if(this.$store.state.colHeaders.length != this.$refs.hotTableComponentPrev.hotInstance.countCols()){
          this.$refs.hotTableComponentPrev.hotInstance.columns.splice(this.$store.state.colHeaders.length-1)
       }
-    },
+    },*/
     updateHiddenCols: function(){
       this.$refs.hotTableComponent.hotInstance.alter('remove_col',this.$store.state.colHeaders.length)
     },

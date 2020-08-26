@@ -59,7 +59,7 @@ import BoundsCard from '@/components/SuggestionCards/BoundsCard.vue'
 */
 export default {
   name:'suggestion-bar',
-  props:['headers'],
+  props:['headers','controller'],
   components:{
     Stats,
     CaseCard,
@@ -79,7 +79,7 @@ export default {
     return{
       nullRadios: null,
       replaceRadios: null,
-      controller: 0,
+      //controller: 0,
       hooperSettings: {
         itemsToShow: 3.25,
         mouseDrag: false,
@@ -115,9 +115,9 @@ export default {
     clearNullRadios: function(){
       this.nullRadios = null;
     },
-    updateModel: function(col){
-      this.controller=col
-    }
+    //updateModel: function(col){
+      //this.controller=col
+    //}
   }
 }
 </script>

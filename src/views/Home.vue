@@ -1,6 +1,6 @@
 <template>
   <v-container fluid fill-width>
-    <suggestion-bar :key="$store.state.changeCounter" :headers="$store.state.colHeaders" ref="suggestionBar"/>
+    <suggestion-bar :key="$store.state.changeCounter" :headers="$store.state.colHeaders" ref="suggestionBar" :controller="this.col"/>
     <v-row id="dataPrev">
       <Table ref="dataTablePrev" :key="key" :settings="hotSettingsPrev" :selected="selectedColumns"/>
     </v-row>
@@ -9,6 +9,9 @@
       <v-col cols=3>
         <v-checkbox color="grey darken-3" id="checkbox" label="Synchronized Scrolling" v-model="syncScroll"/>
       </v-col-->
+      <v-col cols=3>
+        <p>{{this.$store.state.colHeaders[this.col]}}</p>
+      </v-col>
       <v-col cols=3>
         <v-btn
           color="black"
@@ -50,10 +53,11 @@ export default {
   data: function() {
     return {
       selectedColumns:[],
-
+      col: 0,
       syncScroll: false,
       selected: null,
       key:0,
+      islive: false,
 
       hotSettings1: {
         columnSorting: true,
@@ -77,9 +81,6 @@ export default {
       hotSettingsPrev: {
         afterSelectionEnd: () => {
           this.updateModel()
-        },
-        afterChange: () => {
-          this.$refs.dataTablePrev.removeCols()
         },
         selectionRanges: 'multiple',
         columnSorting: true,
@@ -110,24 +111,19 @@ export default {
     }
   },
   methods:{
-    changeSelectedColumns: function(arg,n){
+    /*changeSelectedColumns: function(arg,n){
       if(n==0){
         this.selectedColumns = []
       }
       this.selectedColumns.push(arg)
-    },
-    getSelectedData: function(){
-      this.selected = this.$refs.dataTablePrev.getSelectedColHeader()
-      this.updateModel()
-    },
+    },*/
     updateModel: function(){
-      var col = this.$refs.dataTablePrev.getSelected()
+      this.col = this.$refs.dataTablePrev.getSelected()
       this.$refs.dataTablePrev.clearHighlight()
-      this.$refs.suggestionBar.updateModel(col)
+      //this.$refs.suggestionBar.updateModel(this.col)
     },
     applyTrans: function(){
       this.$store.dispatch('applyTrans')
-      
     },
     resetTrans: function(){
       this.$store.dispatch('resetTrans')
