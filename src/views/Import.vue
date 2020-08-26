@@ -62,7 +62,7 @@
           :disabled="files==null"
           color="black"
           text
-          @click="step++"
+          @click="preview()"
         >
           Next
         </v-btn>
@@ -95,8 +95,8 @@ export default {
   data: function(){
     return{
       update:0,
-      qradios: null,
-      hradios: null,
+      qradios: 'both',
+      hradios: 'headers',
       files: null,
       step:1,
       originaldata: null,
@@ -151,17 +151,17 @@ export default {
     decStep: function(){
       console.log(this.originaldata)
       console.log(this.data)
-      if(this.step == 3) {
+      /*if(this.step == 3) {
         this.qradios = null
         this.hradios = null
         this.data = _.cloneDeep(this.originaldata)
         this.headers = null
-      }
+      }*/
       
       this.step--
     },
     preview: function(){
-      this.step++
+      this.step+=2
       this.defineHeaders()
       this.editData()
     },
