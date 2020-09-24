@@ -12,17 +12,26 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta:{
+        title: "Data Cleaning for All"
+      }
     },
     {
       path: '/timeline',
       name: 'Timeline',
-      component: Timeline
+      component: Timeline,
+      meta:{
+        title: "Timeline - Data Cleaning for All"
+      }
     },
     {
       path: '/import',
       name: 'Import CSV File',
-      component: Import
+      component: Import,
+      meta:{
+        title: "Import - Data Cleaning for All"
+      }
     }
   ]
 })

@@ -47,7 +47,8 @@ export default {
           col: this.controller,
           column1: this.column1,
           column2: this.column2,
-          char: this.splitChar
+          char: this.splitChar,
+          job: 'splitByChar'
         })
     } 
   }

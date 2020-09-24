@@ -80,12 +80,14 @@ export default {
         this.$store.dispatch('replaceNull',{
           col: this.controller,
           rows: this.nullRows,
-          val: this.replaceVal
+          val: this.replaceVal,
+          job: 'replaceNull'
         })
       } else if(this.nullRadios=="Remove"){
         this.$store.dispatch('removeNull',{
           col: this.controller,
-          rows: this.nullRows
+          rows: this.nullRows,
+          job: 'removeNull'
         })
       }
     }

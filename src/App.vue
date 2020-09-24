@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <NavBar/>
-    <v-content>
+    <v-main>
       <router-view/>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -12,6 +12,14 @@ import NavBar from '@/components/NavBar.vue'
 export default {
   components: {
     NavBar,
+  },
+  watch: {
+    '$route' (to) {
+      document.title = to.meta.title || 'Data Cleaning for All'
+    }
+  },
+  created: function(){
+    document.title = 'Data Cleaning for All'
   }
 }
 </script>

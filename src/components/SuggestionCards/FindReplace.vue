@@ -39,7 +39,8 @@ export default {
       this.$store.dispatch('findReplace',{
         col: this.controller,
         val: this.valToReplace,
-        rep: this.replaceVal
+        rep: this.replaceVal,
+        job: 'findReplace'
       })
     }
   },

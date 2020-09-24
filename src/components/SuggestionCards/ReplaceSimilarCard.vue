@@ -95,13 +95,15 @@ export default {
         this.$store.dispatch('replaceSimilarValues',{
           col: this.controller,
           new: this.replaceVal,
-          toReplace: this.valuesToReplace
+          toReplace: this.valuesToReplace,
+          job:'replaceSimilarValues'
         })
       } else if(this.replaceRadios != null){
         this.$store.dispatch('replaceSimilarValues',{
           col: this.controller,
           new: this.replaceRadios,
-          toReplace: this.valuesToReplace
+          toReplace: this.valuesToReplace,
+          job:'replaceSimilarValues'
         })
       }
     }

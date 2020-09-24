@@ -81,7 +81,19 @@ export default {
         }
       }
       this.$refs.hotTableComponentPrev.hotInstance.render()
-    }
+    },
+    exportToFile: function(){
+      var exportPlugin = this.$refs.hotTableComponentOriginal.hotInstance.getPlugin('exportFile')
+      exportPlugin.downloadFile('csv',{
+        //columnDelimiter: ',',
+        columnHeaders: true,
+        //exportHiddenColumns: true,
+        //exportHiddenRows: true,
+        fileExtension: 'csv',
+        rowDelimiter: '\r\n',
+        //rowHeaders: true
+      })
+    },
   },
   mounted() {
     //this.$root.$on('highlightRemoveRows', data => {this.highlightRemoveRows(data)})

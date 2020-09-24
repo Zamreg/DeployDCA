@@ -26,6 +26,8 @@ export default new Vuex.Store({
       {type:'text'},
       {type:'text'}
     ],
+    trans: [],
+    finalTrans:[],
     data:[
       ["'VS500PP'","'lge'","'6.0.1'",'Marshmallow',88,'us','America/Chicago'],
       ["'AO5510'","'YU'","'5.1.1'",'Lollipop',59,'pt','Europe/Lisbon'],
@@ -237,12 +239,13 @@ export default new Vuex.Store({
     },
     removeCol(state,payload){
 
-      if(payload[0].start.col == payload[0].end.col){
+
+      if(payload.options[0].start.col == payload.options[0].end.col){
         _.map(state.data, function(array){ 
-          _.pullAt(array,payload[0].start.col)
+          _.pullAt(array,payload.options[0].start.col)
         })
-        _.pullAt(state.colHeaders,payload[0].start.col)
-        _.pullAt(state.columns,payload[0].start.col)
+        _.pullAt(state.colHeaders,payload.options[0].start.col)
+        _.pullAt(state.columns,payload.options[0].start.col)
       }
 
       state.dataHistory.push(state.data)
@@ -399,6 +402,7 @@ export default new Vuex.Store({
       state.changeCounter++
     },
     resetTrans(state){
+      state.trans = []
       state.data = _.cloneDeep(state.data2)
       state.colHeaders = _.cloneDeep(state.colHeaders2)
       state.columns = _.cloneDeep(state.columns2)
@@ -406,7 +410,16 @@ export default new Vuex.Store({
       state.changeCounter++
     },
     
-    
+    commitTrans(state,payload){
+      console.log(payload)
+      state.trans.push(payload)
+    },
+    pushTrans(state){
+      console.log("state.trans")
+      console.log(state.trans)
+      state.finalTrans.push(_.cloneDeep(state.trans)),
+      state.trans = []
+    },
   },
   actions: {
     init(state,payload){
@@ -416,36 +429,46 @@ export default new Vuex.Store({
       state.commit('update')
     },
     removeCol(state,payload){
+      state.commit('commitTrans',payload)
       state.commit('removeCol',payload)
     },
     removeOutliers (state, payload){
+      state.commit('commitTrans',payload)
       state.commit('removeOutliers',payload)
     },
     replaceNull (state, payload) {
+      state.commit('commitTrans',payload)
       state.commit('replaceNull', payload)
     },
     removeNull (state, payload) {
+      state.commit('commitTrans',payload)
       state.commit('removeNull', payload)
     },
     replaceSimilarValues (state, payload){
+      state.commit('commitTrans',payload)
       state.commit('replaceSimilarValues', payload)
     },
     changeCase (state,payload) {
+      state.commit('commitTrans',payload)
       state.commit('changeCase', payload)
     },
     splitByChar (state,payload) {
+      state.commit('commitTrans',payload)
       state.commit('splitByChar', payload)
     },
     findReplace (state,payload) {
+      state.commit('commitTrans',payload)
       state.commit('findReplace',payload)
     },
     applyTrans (state){
+      state.commit('pushTrans')
       state.commit('applyTrans')
     },
     resetTrans (state){
       state.commit('resetTrans')
     },
     nullFilter (state,payload) {
+      state.commit('commitTrans',payload)
       switch(payload.job){
         case "Is empty":
           state.commit('removeNull',payload)
@@ -457,6 +480,7 @@ export default new Vuex.Store({
       }
     },
     singleFilter(state,payload) {
+      state.commit('commitTrans',payload)
       switch( payload.job ){
         case "Is equal to": 
           break;
@@ -480,6 +504,7 @@ export default new Vuex.Store({
       }
     },
     doubleFilter(state,payload) {
+      state.commit('commitTrans',payload)
       switch( payload.job ){
         case "Is between":
           state.commit('keepOutliers',payload)

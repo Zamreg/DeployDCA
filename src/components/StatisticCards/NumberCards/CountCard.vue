@@ -94,8 +94,16 @@ export default {
 </script>
 
 <style>
+#codeCol{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 p.line {
-  line-height: 07;
-  font-size: 100%;
+  line-height: 0.9;
+  font-size: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

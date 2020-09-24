@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "Data-Cleaning-for-All",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "@mdi/font": "^4.9.95",
     "apexcharts": "^3.20.0",
     "core-js": "^3.6.5",
+    "file-saver": "^2.0.2",
     "handsontable": "^7.4.2",
     "hooper": "^0.3.4",
     "lodash": "^4.17.20",

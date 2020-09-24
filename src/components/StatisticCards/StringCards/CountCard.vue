@@ -4,7 +4,7 @@
     <v-card-title class="justify-center">Count</v-card-title>
     <v-container id="code" >
       <v-row dense v-for="item in this.uniqueValues" :key="item.val" >
-        <v-col id="codeCol" class="text--primary body-2" align="left">
+        <v-col id="codeCol" class="text--primary body-2" align="left" cols=8>
           <div>
             <p class="line" v-if="item.val != ''">{{ item.val }}</p>
             <p class="line" v-else>Null</p>
@@ -83,8 +83,16 @@ export default {
 </script>
 
 <style>
+#codeCol{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 p.line {
-  line-height: 0.7;
-  font-size: 90%;
+  line-height: 0.9;
+  font-size: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

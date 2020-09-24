@@ -114,7 +114,7 @@ export default {
     getFiles: function(){
       if(this.files != null){
         this.$papa.parse(this.files[0],{
-          fastMode: true,
+          //fastMode: true,
           //skipEmptyLines: true,
           complete: (result) => {
             this.data = _.cloneDeep(result.data)

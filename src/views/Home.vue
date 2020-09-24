@@ -9,10 +9,10 @@
       <v-col cols=3>
         <v-checkbox color="grey darken-3" id="checkbox" label="Synchronized Scrolling" v-model="syncScroll"/>
       </v-col-->
-      <v-col cols=3>
-        <p>{{this.$store.state.colHeaders[this.col]}}</p>
-      </v-col>
-      <v-col cols=3>
+      <!--v-col cols=3>
+        <p align-center justify-center>{{this.$store.state.colHeaders[this.col]}}</p>
+      </v-col-->
+      <v-col cols=3 align="center">
         <v-btn
           color="black"
           text
@@ -21,7 +21,7 @@
           Apply to Data
         </v-btn>
       </v-col>
-      <v-col cols=3>
+      <v-col cols=3 align="center">
         <v-btn
           color="black"
           text
@@ -30,17 +30,36 @@
           Reset Transformations
         </v-btn>
       </v-col>
+      <v-col cols=3 align="center">
+        <v-btn 
+          color="green" 
+          text
+          @click="exportToCSV()"
+        >
+          Export Data To CSV File
+        </v-btn>
+      </v-col>
+      <v-col cols=3 align="center">
+        <v-btn 
+          color="green" 
+          text
+          @click="exportTrans()"
+        >
+          Export Transformations To File
+        </v-btn>
+      </v-col>
     </v-row>
     <v-row id="originalData">
       <Table ref="dataTable" :key="key" :settings="hotSettings1" original="true"/>
     </v-row>
   </v-container>
-  
 </template>
 
 <script>
 import Table from '@/components/Table.vue'
 import SuggestionBar from '@/components/SuggestionBar.vue'
+import { saveAs } from 'file-saver';
+//import fs from 'fs'
 //import Dropdown from '@/components/SelectMenu.vue'
 
 export default {
@@ -76,6 +95,7 @@ export default {
             "filter_action_bar":{}
           }
         },
+        exportFile: true,
         licenseKey: 'non-commercial-and-evaluation'
       },
       hotSettingsPrev: {
@@ -94,7 +114,12 @@ export default {
             'remove_column':{
               name: "Remove Column",
               callback:  (key,options) => {
-                this.$store.dispatch("removeCol",options)
+                var payload = {
+                  options: options,
+                  job: 'removeCol'
+                }
+                console.log(payload)
+                this.$store.dispatch("removeCol",payload)
               }
             },
             '---------':{},
@@ -117,6 +142,31 @@ export default {
       }
       this.selectedColumns.push(arg)
     },*/
+    exportToCSV: function(){
+      this.$refs.dataTable.exportToFile()
+    },
+    exportTrans: function(){
+      var data = this.$store.state.finalTrans
+      var arr = []
+      var _ = require('lodash')
+      //console.log("Final Transformations")
+      //console.log(data)
+      _.each(data, (trans) => {
+        arr.push(JSON.stringify(trans))
+      })
+      //console.log("array")
+      //console.log(arr)
+      //console.log(arr.toString())
+      var blob = new Blob([arr.toString()],
+                { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "Transformations.json");
+      /*var fs = require('browserify-fs')
+      
+      fs.writeFile('helloworld.txt', data, function (err) {
+        if (err) return console.log(err);
+        console.log('pogu');
+      });*/
+    },
     updateModel: function(){
       this.col = this.$refs.dataTablePrev.getSelected()
       this.$refs.dataTablePrev.clearHighlight()
@@ -127,7 +177,6 @@ export default {
     },
     resetTrans: function(){
       this.$store.dispatch('resetTrans')
-      
     }
   }
 }
