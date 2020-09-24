@@ -58,7 +58,7 @@ export default {
     },
     belowMin: function(){
         //highlight rows & cell 
-        console.log(this.min)
+        //console.log(this.min)
         //var rowIndex = this.getBelowMin(this.min,this.controller)
         //this.$root.$emit('highlightRemoveRows', rowIndex);
     },

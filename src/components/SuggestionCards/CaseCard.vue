@@ -68,7 +68,7 @@ export default {
       this.radios = null;
     },
     apply: function(){
-      console.log("radios: " + this.radios + ",val: " + this.radios)
+      //console.log("radios: " + this.radios + ",val: " + this.radios)
         this.$store.dispatch('changeCase',{
           col: this.controller,
           case: this.radios,

@@ -83,14 +83,14 @@ export default {
     }
   },
   methods:{
-    replace: function(){
-      console.log("hello")
-    },
+    //replace: function(){
+      //console.log("hello")
+    //},
     clearReplaceRadios: function(){
       this.replaceRadios = null;
     },
     apply: function(){
-      console.log("radios: " + this.replaceRadios + ",val: " + this.replaceVal + ",old: " + this.valuesToReplace)
+      //console.log("radios: " + this.replaceRadios + ",val: " + this.replaceVal + ",old: " + this.valuesToReplace)
       if(this.replaceRadios == 'Both'){
         this.$store.dispatch('replaceSimilarValues',{
           col: this.controller,

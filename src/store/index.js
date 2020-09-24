@@ -411,12 +411,12 @@ export default new Vuex.Store({
     },
     
     commitTrans(state,payload){
-      console.log(payload)
+      //console.log(payload)
       state.trans.push(payload)
     },
     pushTrans(state){
-      console.log("state.trans")
-      console.log(state.trans)
+      //console.log("state.trans")
+      //console.log(state.trans)
       state.finalTrans.push(_.cloneDeep(state.trans)),
       state.trans = []
     },
@@ -485,7 +485,7 @@ export default new Vuex.Store({
         case "Is equal to": 
           break;
         case "Is not equal to": 
-          console.log("Not equal remove")
+          //console.log("Not equal remove")
           state.commit('removeDiff',payload)
           break;
         case "Greater than": 

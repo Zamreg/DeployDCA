@@ -100,22 +100,22 @@
     },
     methods:{
       apply: function(){
-        console.log("apply1")
+        //console.log("apply1")
         if(this.skipModels.includes(this.model) ){
-          console.log("apply2")
+          //console.log("apply2")
           this.$store.dispatch('nullFilter',{
             col: this.controller,
             job: this.model,
           })
         } else if (this.oneVal.includes(this.model) ){
-          console.log("apply3")
+          //console.log("apply3")
           this.$store.dispatch('singleFilter',{
             col: this.controller,
             job: this.model,
             val: this.value
           })
         } else if (this.twoVal.includes(this.model) ){
-          console.log("apply4")
+          //console.log("apply4")
           this.$store.dispatch('doubleFilter',{
             col: this.controller,
             job: this.model,
@@ -123,7 +123,7 @@
             max: this.max
           })
         } else {
-          console.log("apply5")
+          //console.log("apply5")
         }
       },
       incStep: function(){

@@ -30,7 +30,9 @@ export default {
           if(b != null && b != '') return a+Number(b)
           else return a
         },0 ) 
-      if(isNaN(sum)) console.log(sum)
+      if(isNaN(sum)) {
+        //console.log(sum)
+      }
       else avg = (sum/this.columnValues.length).toFixed(2)
       return avg
     },

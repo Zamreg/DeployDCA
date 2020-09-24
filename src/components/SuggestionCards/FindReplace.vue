@@ -35,7 +35,7 @@ export default {
   },
   methods:{
     apply: function(){
-      console.log(this.replaceVal)
+      //console.log(this.replaceVal)
       this.$store.dispatch('findReplace',{
         col: this.controller,
         val: this.valToReplace,

@@ -42,7 +42,7 @@ export default {
       this.radios = null;
     },
     apply: function(){
-      console.log("Column Header 1: " + this.column1 + ", Column Header 2: " + this.column2 + ", character: " + this.splitChar + ", column:" + this.controller)
+      //console.log("Column Header 1: " + this.column1 + ", Column Header 2: " + this.column2 + ", character: " + this.splitChar + ", column:" + this.controller)
         this.$store.dispatch('splitByChar',{
           col: this.controller,
           column1: this.column1,

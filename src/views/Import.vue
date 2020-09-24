@@ -149,8 +149,8 @@ export default {
       return data
     },*/
     decStep: function(){
-      console.log(this.originaldata)
-      console.log(this.data)
+      //console.log(this.originaldata)
+      //console.log(this.data)
       /*if(this.step == 3) {
         this.qradios = null
         this.hradios = null

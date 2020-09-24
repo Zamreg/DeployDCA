@@ -118,7 +118,6 @@ export default {
                   options: options,
                   job: 'removeCol'
                 }
-                console.log(payload)
                 this.$store.dispatch("removeCol",payload)
               }
             },
@@ -149,23 +148,14 @@ export default {
       var data = this.$store.state.finalTrans
       var arr = []
       var _ = require('lodash')
-      //console.log("Final Transformations")
-      //console.log(data)
+
       _.each(data, (trans) => {
         arr.push(JSON.stringify(trans))
       })
-      //console.log("array")
-      //console.log(arr)
-      //console.log(arr.toString())
+
       var blob = new Blob([arr.toString()],
                 { type: "text/plain;charset=utf-8" });
             saveAs(blob, "Transformations.json");
-      /*var fs = require('browserify-fs')
-      
-      fs.writeFile('helloworld.txt', data, function (err) {
-        if (err) return console.log(err);
-        console.log('pogu');
-      });*/
     },
     updateModel: function(){
       this.col = this.$refs.dataTablePrev.getSelected()
