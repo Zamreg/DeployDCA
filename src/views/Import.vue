@@ -158,7 +158,7 @@ export default {
         this.headers = null
       }*/
       
-      this.step--
+      this.step-=2
     },
     preview: function(){
       this.step+=2

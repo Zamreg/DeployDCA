@@ -27,7 +27,7 @@
           text
           @click="resetTrans()"
         >
-          Reset Transformations
+          Reset Changes
         </v-btn>
       </v-col>
       <v-col cols=3 align="center">
@@ -45,7 +45,7 @@
           text
           @click="exportTrans()"
         >
-          Export Transformations To File
+          Export Changes To File
         </v-btn>
       </v-col>
     </v-row>
