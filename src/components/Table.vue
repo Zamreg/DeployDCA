@@ -100,6 +100,7 @@ export default {
     //this.$root.$on('highlightReplaceRows', data => {this.highlightReplaceRows(data)})
     //this.$root.$on('clearHighlight', () => this.clearHighlight())
     this.$root.$on('updateHiddenCols', () => this.updateHiddenCols())
+    this.$root.$on('exportCSV', () => this.exportToFile())
   }
 }
 </script>

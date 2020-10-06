@@ -112,15 +112,15 @@
           this.$store.dispatch('singleFilter',{
             col: this.controller,
             job: this.model,
-            val: this.value
+            val: parseFloat(this.value)
           })
         } else if (this.twoVal.includes(this.model) ){
           //console.log("apply4")
           this.$store.dispatch('doubleFilter',{
             col: this.controller,
             job: this.model,
-            min: this.min,
-            max: this.max
+            min: parseFloat(this.min),
+            max: parseFloat(this.max)
           })
         } else {
           //console.log("apply5")

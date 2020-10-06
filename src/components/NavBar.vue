@@ -50,12 +50,28 @@
       <v-toolbar-title>Data Cleaning for All</v-toolbar-title>
 
       <v-spacer></v-spacer>
+      <v-btn 
+        color="green" 
+        text
+        @click="exportTrans()"
+      >
+        Export Changes
+      </v-btn>
+      <v-btn 
+          color="green" 
+          text
+          @click="exportToCSV()"
+        >
+          Export Data
+        </v-btn>
     </v-app-bar>
   </nav>
 </template>
 
 
 <script>
+import { saveAs } from 'file-saver';
+
 export default {
   name: 'NavBar',
   data() {
@@ -76,7 +92,24 @@ export default {
     },
     goTo : function (path) {
       this.$router.push(path)
-    }
+    },
+    exportToCSV: function(){
+      this.$root.$emit("exportCSV")
+      this.$refs.dataTable.exportToFile()
+    },
+    exportTrans: function(){
+      var data = this.$store.state.finalTrans
+      var arr = []
+      var _ = require('lodash')
+
+      _.each(data, (trans) => {
+        arr.push(JSON.stringify(trans))
+      })
+
+      var blob = new Blob([arr.toString()],
+                { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "Transformations.json");
+    },
   }
 }
 </script>

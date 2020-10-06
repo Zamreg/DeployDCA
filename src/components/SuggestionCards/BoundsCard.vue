@@ -51,8 +51,8 @@ export default {
     apply: function(){
       this.$store.dispatch('removeOutliers',{
         col: this.controller,
-        min: this.min,
-        max: this.max,
+        min: parseFloat(this.min),
+        max: parseFloat(this.max),
         job: 'removeOutliers'
       })
     },

@@ -267,9 +267,10 @@ export default new Vuex.Store({
       state.dataHistory.push(state.data)
       state.changeCounter++
     },
+    //Single Filter
     removeBelow (state, payload) {
       _.remove(state.data, function(array){
-        if (array[payload.col] < payload.val) return true
+        if (parseFloat(array[payload.col]) < payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
@@ -277,7 +278,7 @@ export default new Vuex.Store({
     },
     removeBelowEq (state, payload) {
       _.remove(state.data, function(array){
-        if (array[payload.col] <= payload.val) return true
+        if (parseFloat(array[payload.col]) <= payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
@@ -285,7 +286,7 @@ export default new Vuex.Store({
     },
     removeAbove (state, payload) {
       _.remove(state.data, function(array){
-        if (array[payload.col] > payload.val) return true
+        if (parseFloat(array[payload.col]) > payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
@@ -293,7 +294,7 @@ export default new Vuex.Store({
     },
     removeAboveEq (state, payload) {
       _.remove(state.data, function(array){
-        if (array[payload.col] >= payload.val) return true
+        if (parseFloat(array[payload.col]) >= payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
@@ -308,10 +309,17 @@ export default new Vuex.Store({
       state.dataHistory.push(state.data)
       state.changeCounter++
     },
-    //Single Filter
     removeDiff(state, payload) {
       _.remove(state.data, function(array){
-        if (array[payload.col] != payload.val) return true
+        if (parseFloat(array[payload.col]) != payload.val) return true
+        else return false
+      })  
+      state.dataHistory.push(state.data)
+      state.changeCounter++
+    },
+    removeEq(state, payload) {
+      _.remove(state.data, function(array){
+        if (parseFloat(array[payload.col]) == payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
@@ -367,8 +375,9 @@ export default new Vuex.Store({
       state.changeCounter++
     },
     removeOutliers (state, payload){
+      
       for(var row=0; state.data[row]; row++){
-        if(state.data[row][payload.col] < payload.min || state.data[row][payload.col] > payload.max){
+        if(parseFloat(state.data[row][payload.col]) < payload.min || parseFloat(state.data[row][payload.col]) > payload.max){
           state.data.splice(row,1)
           row--
         }
@@ -378,7 +387,7 @@ export default new Vuex.Store({
     },
     keepOutliers (state, payload){
       for(var row=0; state.data[row]; row++){
-        if(state.data[row][payload.col] > payload.min && state.data[row][payload.col] < payload.max){
+        if(parseFloat(state.data[row][payload.col]) > payload.min && parseFloat(state.data[row][payload.col]) < payload.max){
           state.data.splice(row,1)
         }
       }
@@ -483,9 +492,9 @@ export default new Vuex.Store({
       state.commit('commitTrans',payload)
       switch( payload.job ){
         case "Is equal to": 
+          state.commit('removeEq',payload)
           break;
         case "Is not equal to": 
-          //console.log("Not equal remove")
           state.commit('removeDiff',payload)
           break;
         case "Greater than": 

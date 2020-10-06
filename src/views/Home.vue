@@ -30,7 +30,7 @@
           Reset Changes
         </v-btn>
       </v-col>
-      <v-col cols=3 align="center">
+      <!--v-col cols=3 align="center">
         <v-btn 
           color="green" 
           text
@@ -47,7 +47,7 @@
         >
           Export Changes To File
         </v-btn>
-      </v-col>
+      </v-col-->
     </v-row>
     <v-row id="originalData">
       <Table ref="dataTable" :key="key" :settings="hotSettings1" original="true"/>
@@ -58,7 +58,7 @@
 <script>
 import Table from '@/components/Table.vue'
 import SuggestionBar from '@/components/SuggestionBar.vue'
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 //import fs from 'fs'
 //import Dropdown from '@/components/SelectMenu.vue'
 
@@ -140,7 +140,7 @@ export default {
         this.selectedColumns = []
       }
       this.selectedColumns.push(arg)
-    },*/
+    },
     exportToCSV: function(){
       this.$refs.dataTable.exportToFile()
     },
@@ -156,7 +156,7 @@ export default {
       var blob = new Blob([arr.toString()],
                 { type: "text/plain;charset=utf-8" });
             saveAs(blob, "Transformations.json");
-    },
+    },*/
     updateModel: function(){
       this.col = this.$refs.dataTablePrev.getSelected()
       this.$refs.dataTablePrev.clearHighlight()

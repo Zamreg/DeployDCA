@@ -100,7 +100,7 @@
           })
         } else if (this.oneVal.includes(this.model) ){
           //console.log("Single Filter")
-          this.$store.dispatch('singleFilter',{
+          this.$store.dispatch('singleFilterText',{
             col: this.controller,
             job: this.model,
             val: this.value

@@ -27,9 +27,9 @@
         <slide v-if="this.getColDataType(controller) == 'number'">
           <FilterNumericCard :controller="controller" :height="230"/>
         </slide>
-        <slide v-if="this.getColDataType(controller) == 'string'">
+        <!--slide v-if="this.getColDataType(controller) == 'string'">
           <FilterTextCard :controller="controller" :height="230"/>
-        </slide>
+        </slide-->
         <slide v-if="this.getColDataType(controller) == 'string'">
           <CaseCard :controller="controller" :height="230"/>
         </slide>
@@ -50,7 +50,7 @@ import _ from 'lodash'
 import CaseCard from '@/components/SuggestionCards/CaseCard.vue'
 import SplitCard from '@/components/SuggestionCards/SplitCard.vue'
 import FilterNumericCard from '@/components/SuggestionCards/FilterNumericCard.vue'
-import FilterTextCard from '@/components/SuggestionCards/FilterTextCard.vue'
+//import FilterTextCard from '@/components/SuggestionCards/FilterTextCard.vue'
 
 import NullCard from '@/components/SuggestionCards/NullCard.vue'
 import FindReplace from '@/components/SuggestionCards/FindReplace.vue'
@@ -65,7 +65,7 @@ export default {
     CaseCard,
     SplitCard,
     FilterNumericCard,
-    FilterTextCard,
+    //FilterTextCard,
     Hooper,
     Slide,
     HooperNavigation,
