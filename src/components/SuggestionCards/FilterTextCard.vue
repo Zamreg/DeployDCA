@@ -82,10 +82,10 @@
           "Is not empty",
           "Is equal to",
           "Is not equal to",
-          "Begins with",
-          "Ends with",
-          "Contains",
-          "Does not contain"
+          //"Begins with",
+          //"Ends with",
+          //"Contains",
+          //"Does not contain"
         ],
         skipModels: ["Is empty","Is not empty"],
         oneVal: ["Is equal to","Is not equal to","Greater than","Greater than or equal to","Less than","Less than or equal to"],
@@ -100,7 +100,7 @@
           })
         } else if (this.oneVal.includes(this.model) ){
           //console.log("Single Filter")
-          this.$store.dispatch('singleFilterText',{
+          this.$store.dispatch('singleFilter',{
             col: this.controller,
             job: this.model,
             val: this.value

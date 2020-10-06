@@ -311,7 +311,7 @@ export default new Vuex.Store({
     },
     removeDiff(state, payload) {
       _.remove(state.data, function(array){
-        if (parseFloat(array[payload.col]) != payload.val) return true
+        if (array[payload.col] != payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
@@ -319,7 +319,7 @@ export default new Vuex.Store({
     },
     removeEq(state, payload) {
       _.remove(state.data, function(array){
-        if (parseFloat(array[payload.col]) == payload.val) return true
+        if (array[payload.col] == payload.val) return true
         else return false
       })  
       state.dataHistory.push(state.data)
