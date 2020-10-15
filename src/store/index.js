@@ -231,6 +231,8 @@ export default new Vuex.Store({
       state.columns2 = payload.cols
       state.data = _.cloneDeep(payload.data)
       state.data2 = _.cloneDeep(payload.data)
+      state.trans = []
+      state.finalTrans = []
       //state.dataHistory[0] = _.cloneDeep(payload.data)
       state.changeCounter = 0
     },
