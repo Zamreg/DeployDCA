@@ -94,10 +94,13 @@ export default {
       this.$router.push(path)
     },
     exportToCSV: function(){
+      this.$store.dispatch('applyTrans')
       this.$root.$emit("exportCSV")
       this.$refs.dataTable.exportToFile()
     },
     exportTrans: function(){
+      this.$store.dispatch('applyTrans')
+      
       var data = this.$store.state.finalTrans
       var arr = []
       var _ = require('lodash')
